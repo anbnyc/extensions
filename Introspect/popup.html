@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IntroSpect</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+				min-width: 200px;
+      }
+			td, text.label, #tooltip{
+				font-size: 11px;
+				color: #a157e8;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+    </style>
+  </head>
+  <body>
+		<h4>IntroSpect</h4>
+		<div layout="row">
+			<button id="history-thispage">Get History For This Page</button>
+			<button id="history-all">Get All History Today</button>
+		</div>
+		<div>
+			<div>
+				<svg id="graph"></svg>
+				<div id="tooltip"></div>
+			</div>
+			<table id="data"></table>
+		</div>
+  </body>
+	<script src="d3.min.js"></script>
+	<script src="popup.js"></script>
+</html>
+

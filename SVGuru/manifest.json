@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "SVGuru",
+  "description": "This extension labels the SVG elements on the page with their attributes.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Launch SVGuru"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}

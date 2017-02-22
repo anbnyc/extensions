@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "IntroSpect",
+  "description": "How many times have you visited a website today?",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "See my analytics!"
+  },
+
+  "permissions": [
+    "activeTab",
+		"history",
+    "https://ajax.googleapis.com/"
+  ]
+}
