@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "ReadToMe",
+  "description": "Read a webpage text out loud",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "sound.png",
+    "default_title": "Read to me!"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "permissions": [
+    "activeTab",
+		"tts",
+    "https://ajax.googleapis.com/"
+  ]
+}

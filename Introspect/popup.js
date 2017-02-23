@@ -1,9 +1,14 @@
 function retrieveData(url){
-	let query = { maxResults: 10000, text: url ? url : '' }
+	url = url ? url : "";
+	if(url.startsWith("chrome://")){
+		populateTooltip({subdomain: "chrome://", count: 1, lastVisitTime: new Date(), urls: [url]})
+		return;
+	}
+	let query = { maxResults: 10000, text: url }
 	chrome.history.search(query,function(visits){
-		let data = {}
+		let data = {};
 		visits.forEach(function(visit){
-			let subdomain = visit.url.substring(0, visit.url.search(/\.{1}(com|org|io|edu|it|co|net|gov|run|us)/) + 4)
+			let subdomain = visit.url.substring(0, visit.url.search(/\.{1}(com|org|io|edu|it|co|net|gov|run|us)/) + 4);
 			if(!data[subdomain]){
 				data[subdomain] = {
 					subdomain: subdomain,
@@ -19,9 +24,9 @@ function retrieveData(url){
 			}
 		});
 		if(url){
-			populateTooltip(Object.values(data)[0])
+			populateTooltip(Object.values(data)[0]);
 		} else {
-			populateGraph(Object.values(data).sort((a,b)=>b.count - a.count))
+			populateGraph(Object.values(data).sort((a,b)=>b.count - a.count));
 		}
 	});
 }
@@ -104,15 +109,9 @@ document.getElementById("history-all").addEventListener("click",function(){
 });
 
 function getCurrentTabUrl(callback) {
-  var queryInfo = {
-    active: true,
-    currentWindow: true
-  };
-
-  chrome.tabs.query(queryInfo, function(tabs) {
-    var tab = tabs[0];
-    var url = tab.url;
+	chrome.tabs.getSelected(null,function(tab){
+		var url = tab.url;
     console.assert(typeof url == 'string', 'tab.url should be a string');
-    callback(url);
-  });
+		callback(url);
+	})
 }
